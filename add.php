@@ -9,7 +9,7 @@ try {
     $db = openDB();
 
     $query = $db->prepare('insert into task(description) values (:description)');
-    $query->blindValue(':description',$description,PDO::PARAM_STR);
+    $query->bindValue(':description',$description,PDO::PARAM_STR);
     $query->execute();
     header('HTTP/1.1 200 OK');
     $data = array('id' => $db->lastInsertId(), 'description' => $description);
